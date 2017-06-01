@@ -1,18 +1,7 @@
-  import { Component } from '@angular/core';
-
-  export class TodoItem{
-    name: string;
-    status: string;
-  }
-
-
-  const TODOS: TodoItem[] = [
-  {name: 'Create a todo list', status: 'New'},
-  {name: 'Add multiple list items', status: 'New'},
-  {name: 'Change item status to comleted', status: 'Completed'},
-  {name: 'Delete item', status: 'New'}
-  ];
-
+  import { Component, OnInit } from '@angular/core';
+  import { TodosService} from './todos.service';
+  import { Todo } from './todo'
+  import { TODOS } from './mock-todos';
 
   @Component({
     selector: 'my-app',
@@ -29,25 +18,36 @@
     </ul>
    <button *ngFor="let status of statusesSet" (click)="filter(status)">{{status}}</button>
     `,
+   providers: [TodosService]
   })
-  export class AppComponent {
-    todos: Array;
+
+  export class AppComponent implements OnInit{
+    todos: Todo[];
     statusesSet: Set<string> = new Set<string>();
-    constructor() {
-      this.todos = TODOS;
-      this.todos.forEach((item) => {
-        this.statusesSet.add(item.status);
-      })
+
+
+    constructor(private todosService: TodosService) {
+
     }
 
+     getTodos(): void {
+        this.todosService.getTodos().then(todos => {
+          this.todos = todos;
+          this.todos.forEach((item) => {
+          this.statusesSet.add(item.status);
+        })
+      });
+     }
+
+      ngOnInit(): void {
+        this.getTodos();
+      }
+
     filter(statusToFilter) {
-      this.todos = TODOS.filter((todo) => {
+       this.todos = TODOS.filter((todo) => {
         return todo.status === statusToFilter;
       });
   }
-
-
-
 
 
   }
