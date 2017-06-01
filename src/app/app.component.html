@@ -1,0 +1,12 @@
+<h1>Todo List</h1>
+<div>
+  <input placeholder='What needs to be done'/>
+  <button>Add</button>
+</div>
+<ul>
+  <li *ngFor="let todoItem of todos">
+    <p>{{todoItem.name}}</p>
+    <p>Status: {{todoItem.status}}</p>
+  </li>
+</ul>
+<button *ngFor="let status of statusesSet" (click)="filter(status)">{{status}}</button>
