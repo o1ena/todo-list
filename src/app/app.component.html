@@ -1,7 +1,7 @@
 <h1>Todo List</h1>
 <div>
   <input placeholder='What needs to be done'/>
-  <button>Add</button>
+  <button (click)="addTodos()">Add</button>
 </div>
 <ul>
   <li *ngFor="let todoItem of todos">

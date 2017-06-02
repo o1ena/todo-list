@@ -30,7 +30,11 @@
         this.getTodos();
       }
 
-    filter(statusToFilter) {
+      addTodos(): void{
+      console.log('addTodos test');
+    }
+
+    filter(statusToFilter:any) {
        this.todos = TODOS.filter((todo) => {
         return todo.status === statusToFilter;
       });

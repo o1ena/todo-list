@@ -8,11 +8,9 @@ export const TODOS: Todo[] = [
 {name: 'Delete item', status: 'New'}
 ];
 
-
 @Injectable()
   export class TodosService {
     getTodos(): Promise<Todo[]>{
       return Promise.resolve(TODOS);
-    };
-
+    }
 }
