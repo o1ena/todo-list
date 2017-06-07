@@ -2,16 +2,15 @@
 <div>
   <input #newTodo type="text" (keyup)="0"/>
   <p>{{newTodo.value}}</p>
-  <button (click)="addTodoItem(newTodo.value)">Add</button>
-  <button (click)="deleteTodoItem(i)">Delete</button>
+  <button (click)="todosService.addTodoItem(newTodo.value)">Add</button>
+  <button (click)="todosService.deleteTodoItem()">Delete</button>
   </div>
 <ul>
-  <li *ngFor="let todoItem of todos; let i=index">
+  <li *ngFor="let todoItem of todosService.todos">
     <p>{{newTodo.value}}</p>
-    <p>{{todoItem.name}}</p>
     <p>Status: {{todoItem.status}}</p>
     <input type="checkbox" class="checkbox" [(ngModel)]="todoItem.completed" />
-    <a href="#" (click)="deleteSelectedTodos()" >x</a>
+    <a href="#" (click)="todosService.deleteSelectedTodos()" >x</a>
     </li>
 </ul>
-  <button *ngFor="let status of statusesSet" (click)="filter(status)">{{status}}</button>
+  <button *ngFor="let status of statusesSet" (click)="todosService.filter(status)">{{status}}</button>
