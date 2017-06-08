@@ -1,7 +1,6 @@
 <h1>Todo List</h1>
 <div>
   <input #newTodo type="text" (keyup)="0"/>
-  <p>{{newTodo.value}}</p>
   <button (click)="addTodoItem(newTodo.value)">Add</button>
   <button (click)="todosService.deleteTodoItem()">Delete</button>
   </div>

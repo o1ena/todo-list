@@ -1,8 +1,6 @@
   import { Component, OnInit } from '@angular/core';
   import { TodosService} from './todos.service';
   import { Todo } from './todo';
-  //import { LocalStorageService } from 'angular-2-local-storage';
- // import { TodoStore } from './todo.store';
 
 @Component({
   selector: 'my-app',
@@ -26,5 +24,5 @@ export class AppComponent implements OnInit {
       this.todosService.updateTodoItem(item);
   }
 
-  ngOnInit(): void {}
+   ngOnInit(): void {}
 }
