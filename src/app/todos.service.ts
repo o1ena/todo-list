@@ -3,39 +3,62 @@ import { Todo } from './todo';
 
 
 @Injectable()
-  export class TodosService {
+export class TodosService {
+    statusesSet: Set<string> = new Set<string>();
     todos: Array<Todo> = [];
-    addTodoItem(newTodo: string){
-        this.todos.push(newTodo);
-        console.log('added');
+
+    private updateStatusesSet() {
+        this.statusesSet.clear();
+        this.todos.forEach((item) => {
+            this.statusesSet.add(item.status);
+        })
     }
 
-    deleteTodoItem(name: string) : void {
-        var index = this.todos.indexOf(name, 0);
+    addTodoItem(newTodo: Todo) {
+        this.todos.push(newTodo);
+        localStorage.setItem('todos', JSON.stringify(this.todos));
+        this.updateStatusesSet();
+    }
+
+    deleteTodoItem(todo: Todo): void {
+        var index = this.todos.indexOf(todo, 0);
         if (index !== undefined) {
             this.todos.splice(index, 1);
         }
+        localStorage.setItem('todos', JSON.stringify(this.todos));
+        this.updateStatusesSet();
     }
 
     deleteSelectedTodos() {
-      for(var i=(this.todos.length -1); i > -1; i--) {
-        if(this.todos[i].completed) {
-          this.todos.splice(i, 1);
+        for (var i = (this.todos.length - 1); i > -1; i--) {
+            if (this.todos[i].completed) {
+                this.todos.splice(i, 1);
+            }
         }
-      }
-  }
-
-    getTodos(): Array<Todo> {
-      return this.todos;
+        localStorage.setItem('todos', JSON.stringify(this.todos));
+        this.updateStatusesSet();
     }
 
-    filter(statusToFilter:any) {
-        this.todos = TODOS.filter((todo) => {
-          return todo.status === statusToFilter;
+    updateTodoItem(todoItem: Todo) {
+        let index = this.todos.findIndex((item) => {
+            return item.name === todoItem.name;
+        });
+        this.todos[index] = todoItem;
+        localStorage.setItem('todos', JSON.stringify(this.todos));
+        this.updateStatusesSet();
+    }
+
+    getTodos(): Array<Todo> {
+        if (this.todos.length === 0) {
+            this.todos = JSON.parse(localStorage.getItem('todos')) || [];
+        }
+        this.updateStatusesSet();
+        return this.todos;
+    }
+
+    filter(statusToFilter: any) {
+        this.todos = this.todos.filter((todo) => {
+            return todo.status === statusToFilter;
         });
     }
 }
-
-
-
-

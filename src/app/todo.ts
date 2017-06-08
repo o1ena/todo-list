@@ -1,5 +1,3 @@
-export class Todo{
-  name: string;
-  status: string;
-  completed: boolean;
+export class Todo {
+    constructor(public name: string, public status: string, public completed: boolean) {}
 }

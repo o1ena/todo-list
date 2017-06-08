@@ -2,15 +2,19 @@
 <div>
   <input #newTodo type="text" (keyup)="0"/>
   <p>{{newTodo.value}}</p>
-  <button (click)="todosService.addTodoItem(newTodo.value)">Add</button>
+  <button (click)="addTodoItem(newTodo.value)">Add</button>
   <button (click)="todosService.deleteTodoItem()">Delete</button>
   </div>
 <ul>
-  <li *ngFor="let todoItem of todosService.todos">
-    <p>{{newTodo.value}}</p>
+  <li *ngFor="let todoItem of todosService.getTodos()">
+    <p><span> Name: {{todoItem.name}}</span></p>
     <p>Status: {{todoItem.status}}</p>
-    <input type="checkbox" class="checkbox" [(ngModel)]="todoItem.completed" />
+    <input
+        type="checkbox"
+        class="checkbox"
+        [(ngModel)]="todoItem.completed"
+        (ngModelChange)="changeStatus(todoItem, $event)"/>
     <a href="#" (click)="todosService.deleteSelectedTodos()" >x</a>
     </li>
 </ul>
-  <button *ngFor="let status of statusesSet" (click)="todosService.filter(status)">{{status}}</button>
+  <button *ngFor="let status of todosService.statusesSet" (click)="todosService.filter(status)">{{status}}</button>
