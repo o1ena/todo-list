@@ -1,19 +1,18 @@
-<h1>Todo List</h1>
-<div>
-  <input #newTodo type="text" (keyup)="0"/>
-  <button (click)="addTodoItem(newTodo.value)">Add</button>
-  <button (click)="todosService.deleteTodoItem()">Delete</button>
+  <h1>Todo List</h1>
+  <div>
+  <input #newTodo type="text" (keyup.enter)="addTodoItem(newTodo.value, $event); newTodo.value=''"/>
+  <button (click)="addTodoItem(newTodo.value, $event); newTodo.value=''">Add Todo</button>
   </div>
-<ul>
-  <li *ngFor="let todoItem of todosService.getTodos()">
-    <p><span> Name: {{todoItem.name}}</span></p>
-    <p>Status: {{todoItem.status}}</p>
+  <ol>
+  <li *ngFor="let todoItem of todosService.getTodos(); let i=index">
+    <p><span [ngClass]="{'completedTodo': todoItem.completed}">{{todoItem.name}}</span></p>
+    <p  >Status: {{todoItem.status}}</p>
     <input
-        type="checkbox"
-        class="checkbox"
-        [(ngModel)]="todoItem.completed"
-        (ngModelChange)="changeStatus(todoItem, $event)"/>
-    <a href="#" (click)="todosService.deleteSelectedTodos()" >x</a>
+      type="checkbox"
+      class="checkbox"
+      [(ngModel)]="todoItem.completed"
+      (ngModelChange)="changeStatus(todoItem, $event)"/>
+    <a href="#" (click)="todosService.deleteTodo(i)">[X]</a>
     </li>
-</ul>
+  </ol>
   <button *ngFor="let status of todosService.statusesSet" (click)="todosService.filter(status)">{{status}}</button>

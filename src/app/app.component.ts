@@ -5,6 +5,7 @@
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
+  styleUrls: ['./todos.css'],
   providers: [TodosService]
 })
 export class AppComponent implements OnInit {

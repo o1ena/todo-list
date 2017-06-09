@@ -14,29 +14,16 @@ export class TodosService {
         })
     }
 
-    addTodoItem(newTodo: Todo) {
+    addTodoItem(newTodo: Todo, event) {
         this.todos.push(newTodo);
         localStorage.setItem('todos', JSON.stringify(this.todos));
         this.updateStatusesSet();
     }
 
-    deleteTodoItem(todo: Todo): void {
-        var index = this.todos.indexOf(todo, 0);
-        if (index !== undefined) {
-            this.todos.splice(index, 1);
-        }
-        localStorage.setItem('todos', JSON.stringify(this.todos));
-        this.updateStatusesSet();
-    }
-
-    deleteSelectedTodos() {
-        for (var i = (this.todos.length - 1); i > -1; i--) {
-            if (this.todos[i].completed) {
-                this.todos.splice(i, 1);
-            }
-        }
-        localStorage.setItem('todos', JSON.stringify(this.todos));
-        this.updateStatusesSet();
+    deleteTodo(index) {
+      this.todos.splice(index, 1);
+      localStorage.setItem('todos', JSON.stringify(this.todos));
+      this.updateStatusesSet();
     }
 
     updateTodoItem(todoItem: Todo) {
