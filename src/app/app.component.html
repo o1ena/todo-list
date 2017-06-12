@@ -1,18 +1,25 @@
-  <h1>Todo List</h1>
-  <div>
-  <input #newTodo type="text" (keyup.enter)="addTodoItem(newTodo.value, $event); newTodo.value=''"/>
-  <button (click)="addTodoItem(newTodo.value, $event); newTodo.value=''">Add Todo</button>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<h1>Todo List</h1>
+<div class="todo-container">
+  <div class="input-container">
+    <input class="input-addTodo" #newTodo type="text" (keyup.enter)="addTodoItem(newTodo.value, $event); newTodo.value=''" autocomplete="off" placeholder='What needs to be done ...'/>
+    <button class="btn-addTodo" (click)="addTodoItem(newTodo.value, $event); newTodo.value=''">Add</button>
   </div>
-  <ol>
-  <li *ngFor="let todoItem of todosService.getTodos(); let i=index">
-    <p><span [ngClass]="{'completedTodo': todoItem.completed}">{{todoItem.name}}</span></p>
-    <p  >Status: {{todoItem.status}}</p>
-    <input
-      type="checkbox"
-      class="checkbox"
-      [(ngModel)]="todoItem.completed"
-      (ngModelChange)="changeStatus(todoItem, $event)"/>
-    <a href="#" (click)="todosService.deleteTodo(i)">[X]</a>
-    </li>
-  </ol>
-  <button *ngFor="let status of todosService.statusesSet" (click)="todosService.filter(status)">{{status}}</button>
+  <div class="todos">
+    <ul>
+      <li *ngFor="let todoItem of todosService.getTodos(); let i=index">
+
+        <input
+          type="checkbox"
+          class="checkbox"
+          [(ngModel)]="todoItem.completed"
+          (ngModelChange)="changeStatus(todoItem, $event)"/>
+        <p><span [ngClass]="{'completedTodo': todoItem.completed}">{{todoItem.name}}</span></p>
+        <i class="fa fa-close" style="font-size:24px" (click)="todosService.deleteTodo(i)"></i>
+      </li>
+    </ul>
+    <div class="status-filters">
+      <a href="#" *ngFor="let status of todosService.statusesSet" (click)="todosService.filter(status)"> {{status}} |</a>
+    </div>
+  </div>
+</div>

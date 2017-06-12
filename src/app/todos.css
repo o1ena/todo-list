@@ -1,3 +1,124 @@
 .completedTodo {
   text-decoration: line-through;
 }
+
+* {
+   letter-spacing: 3px;
+    line-height: 1;
+
+}
+
+h1 {
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+body{
+  padding-top: 30px;
+  font-family: 'Roboto', sans-serif;
+  background: #f5f5f5;
+
+}
+
+.todo-container{
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.input-container {
+  display:flex;
+  margin: auto;
+}
+
+.input-addTodo{
+  width: 400px;
+  border: none;
+  text-indent: 8px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.input-addTodo:focus {
+  border-bottom: 2px solid #0085b6;
+  outline:none;
+}
+
+.btn-addTodo {
+    background-color: #0085b6;
+    border: none;
+    color: white;
+    padding: 18px 32px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight:bold;
+}
+
+.btn-addTodo:hover {
+  opacity: 0.6;
+}
+
+.todos{
+  margin: auto;
+  display:flex;
+  flex-direction: column;
+  width:500px;
+  padding-top:30px;
+}
+
+ul {
+    padding: 0px;
+}
+
+.todos li {
+   padding: 15px;
+   display: flex;
+   list-style:none;
+   background: #fff;
+   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+   cursor: default;
+   justify-content: space-between;
+}
+
+.todos li i, .todos li input  {
+  align-self: center;
+  color: #0085b6;
+}
+
+.todos li i:hover, .todos li input:hover {
+  opacity: 0.6;
+  transform:scale(1.1);
+}
+
+.todos li i:active,.todos li input:active {
+  opacity: 0.6;
+  transform: translateY(2px);
+}
+
+.todos li input {
+    width: 1.5em;
+    height: 1.5em;
+    background-color: white;
+    border-radius: 50%;
+    border: 3px solid #ddd;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.todos li input:checked{
+     background-color:  #0085b6;
+}
+
+.status-filters {
+ display: flex;
+ flex-direction: row;
+ justify-content: center;
+}
+
+.status-filters a {
+    text-decoration: none;
+    color: #0085b6;
+}
+
+.status-filters a:hover {
+    font-weight: bold;
+}
