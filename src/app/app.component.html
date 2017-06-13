@@ -1,14 +1,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <h1>Todo List</h1>
-<div class="todo-container">
-  <div class="input-container">
+ <div class="input-container">
     <input class="input-addTodo" #newTodo type="text" (keyup.enter)="addTodoItem(newTodo.value, $event); newTodo.value=''" autocomplete="off" placeholder='What needs to be done ...'/>
     <button class="btn-addTodo" (click)="addTodoItem(newTodo.value, $event); newTodo.value=''">Add</button>
   </div>
   <div class="todos">
     <ul>
       <li *ngFor="let todoItem of todosService.getTodos(); let i=index">
-
         <input
           type="checkbox"
           class="checkbox"
@@ -19,7 +17,7 @@
       </li>
     </ul>
     <div class="status-filters">
-      <a href="#" *ngFor="let status of todosService.statusesSet" (click)="todosService.filter(status)"> {{status}} |</a>
+      <a href="#" *ngFor="let status of todosService.statusesSet" (click)="todosService.filter(status)"> | {{status}} | </a>
     </div>
   </div>
-</div>
+

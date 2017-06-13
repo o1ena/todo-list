@@ -1,5 +1,6 @@
 .completedTodo {
   text-decoration: line-through;
+  color: #0085b6;
 }
 
 * {
@@ -16,9 +17,7 @@ h1 {
 body{
   padding-top: 30px;
   font-family: 'Roboto', sans-serif;
-  background: #f5f5f5;
-
-}
+ }
 
 .todo-container{
     display: flex;
@@ -26,8 +25,9 @@ body{
 }
 
 .input-container {
-  display:flex;
-  margin: auto;
+    display:flex;
+    max-width: 500px;
+    margin: auto;
 }
 
 .input-addTodo{
@@ -57,11 +57,11 @@ body{
 }
 
 .todos{
-  margin: auto;
-  display:flex;
-  flex-direction: column;
-  width:500px;
-  padding-top:30px;
+    padding-top: 10px;
+    display:flex;
+    flex-flow: column wrap;
+    margin: auto;
+    max-width:500px;
 }
 
 ul {
@@ -115,10 +115,12 @@ ul {
 }
 
 .status-filters a {
-    text-decoration: none;
-    color: #0085b6;
+  text-decoration: none;
+  color: grey;
+  margin: 0 .15em;
+  padding: 3px 10px 3px 10px;
 }
 
-.status-filters a:hover {
-    font-weight: bold;
+ .status-filters a:hover {
+   color: black;
 }

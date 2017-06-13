@@ -47,5 +47,5 @@ export class TodosService {
         this.todos = this.todos.filter((todo) => {
             return todo.status === statusToFilter;
         });
-    }
+        }
 }
