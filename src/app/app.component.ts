@@ -1,6 +1,7 @@
-  import { Component, OnInit } from '@angular/core';
-  import { TodosService} from './todos.service';
-  import { Todo } from './todo';
+import { Component, OnInit } from '@angular/core';
+import { TodosService} from './todos.service';
+import { Todo } from './todo';
+
 
 @Component({
   selector: 'my-app',
@@ -9,6 +10,7 @@
   providers: [TodosService]
 })
 export class AppComponent implements OnInit {
+  selectedStatus: string;
   constructor(private todosService: TodosService) {}
 
   addTodoItem(name: string) {
@@ -23,6 +25,14 @@ export class AppComponent implements OnInit {
           item.status = 'New';
       }
       this.todosService.updateTodoItem(item);
+  }
+
+  selectStatus(status: string): void {
+      this.selectedStatus = status;
+  }
+
+  clearStatusSelection() {
+      this.selectedStatus = '';
   }
 
    ngOnInit(): void {}

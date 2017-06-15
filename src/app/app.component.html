@@ -6,7 +6,7 @@
   </div>
   <div class="todos">
     <ul>
-      <li *ngFor="let todoItem of todosService.getTodos(); let i=index">
+      <li *ngFor="let todoItem of (todosService.getTodos() | todosFilter: selectedStatus); let i=index">
         <input
           type="checkbox"
           class="checkbox"
@@ -17,7 +17,7 @@
       </li>
     </ul>
     <div class="status-filters">
-      <a href="#" *ngFor="let status of todosService.statusesSet" (click)="todosService.filter(status)"> | {{status}} | </a>
+      <a href="#" *ngFor="let status of todosService.statusesSet" (click)="selectStatus(status)"> {{status}} | </a>
+      <a href="#" *ngIf="todosService.statusesSet.size > 0" (click)="clearStatusSelection()"> Clear filters </a>
     </div>
   </div>
-
