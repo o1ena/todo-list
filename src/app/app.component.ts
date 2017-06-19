@@ -14,9 +14,11 @@ export class AppComponent implements OnInit {
   constructor(private todosService: TodosService) {}
 
   addTodoItem(name: string) {
-      let todoItem = new Todo(name, 'New', false);
-      this.todosService.addTodoItem(todoItem);
-  }
+     let todoItem = new Todo(name, 'New', false);
+     if(todoItem.name != ''){
+     this.todosService.addTodoItem(todoItem);
+     }
+   }
 
   changeStatus(item: Todo, completed: boolean) {
       if (completed) {

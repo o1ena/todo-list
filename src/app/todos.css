@@ -47,7 +47,7 @@ body{
     border: none;
     color: white;
     padding: 18px 32px;
-    cursor: pointer;
+    cursor: default;
     text-transform: uppercase;
     font-weight:bold;
 }
@@ -81,7 +81,9 @@ ul {
 .todos li i, .todos li input  {
   align-self: center;
   color: #0085b6;
-}
+ }
+
+
 
 .todos li i:hover, .todos li input:hover {
   opacity: 0.6;
@@ -101,7 +103,7 @@ ul {
     border: 3px solid #ddd;
     -webkit-appearance: none;
     outline: none;
-    cursor: pointer;
+    cursor: default;
 }
 
 .todos li input:checked{
@@ -123,4 +125,10 @@ ul {
 
  .status-filters a:hover {
    color: black;
+}
+
+.clearAllIcon:hover {
+  cursor: default;
+  opacity: 0.6;
+
 }

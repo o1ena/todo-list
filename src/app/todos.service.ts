@@ -14,15 +14,19 @@ export class TodosService {
         })
     }
 
+    convertTodos() {
+    localStorage.setItem('todos', JSON.stringify(this.todos));
+    }
+
     addTodoItem(newTodo: Todo) {
         this.todos.push(newTodo);
-        localStorage.setItem('todos', JSON.stringify(this.todos));
+        this.convertTodos();
         this.updateStatusesSet();
     }
 
     deleteTodo(index: any) {
       this.todos.splice(index, 1);
-      localStorage.setItem('todos', JSON.stringify(this.todos));
+      this.convertTodos();
       this.updateStatusesSet();
     }
 
@@ -31,7 +35,7 @@ export class TodosService {
             return item.name === todoItem.name;
         });
         this.todos[index] = todoItem;
-        localStorage.setItem('todos', JSON.stringify(this.todos));
+        this.convertTodos();
         this.updateStatusesSet();
     }
 

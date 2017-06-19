@@ -1,8 +1,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 <h1>Todo List</h1>
  <div class="input-container">
-    <input class="input-addTodo" #newTodo type="text" (keyup.enter)="addTodoItem(newTodo.value, $event); newTodo.value=''" autocomplete="off" placeholder='What needs to be done ...'/>
-    <button class="btn-addTodo" (click)="addTodoItem(newTodo.value, $event); newTodo.value=''">Add</button>
+    <input class="input-addTodo" #newTodo (keyup.enter)="addTodoItem(newTodo.value);
+     newTodo.value=''" autocomplete="off" placeholder='What needs to do ...' autofocus=""
+     ngControl="newTodo" required/>
+    <button class="btn-addTodo" (click)="addTodoItem(newTodo.value); newTodo.value=''">Add</button>
   </div>
   <div class="todos">
     <ul>
@@ -17,7 +21,7 @@
       </li>
     </ul>
     <div class="status-filters">
-      <a href="#" *ngFor="let status of todosService.statusesSet" (click)="selectStatus(status)"> {{status}} | </a>
-      <a href="#" *ngIf="todosService.statusesSet.size > 0" (click)="clearStatusSelection()"> Clear filters </a>
+      <a href="#" *ngFor="let status of todosService.statusesSet" (click)="selectStatus(status)"> {{status}} </a>
+      <i class="material-icons clearAllIcon" *ngIf="todosService.statusesSet.size > 0" (click)="clearStatusSelection()">clear_all</i>
     </div>
   </div>
