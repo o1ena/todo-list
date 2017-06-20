@@ -26,12 +26,12 @@ body{
 
 .input-container {
     display:flex;
-    max-width: 500px;
+    max-width: 400px;
     margin: auto;
 }
 
 .input-addTodo{
-  width: 400px;
+  width: 500px;
   border: none;
   text-indent: 8px;
   border-bottom: 1px solid #f5f5f5;
@@ -61,7 +61,7 @@ body{
     display:flex;
     flex-flow: column wrap;
     margin: auto;
-    max-width:500px;
+    max-width:400px;
 }
 
 ul {
@@ -82,8 +82,6 @@ ul {
   align-self: center;
   color: #0085b6;
  }
-
-
 
 .todos li i:hover, .todos li input:hover {
   opacity: 0.6;
@@ -114,21 +112,34 @@ ul {
  display: flex;
  flex-direction: row;
  justify-content: center;
+ align-items: center;
 }
 
-.status-filters a {
+.status-filters a, .clearAllIcon {
   text-decoration: none;
   color: grey;
   margin: 0 .15em;
-  padding: 3px 10px 3px 10px;
+  padding: 5px 10px 5px 10px;
 }
 
- .status-filters a:hover {
+ .status-filters a:hover, .clearAllIcon:hover{
+    color: black;
+    cursor: default;
+ }
+
+ .status-filters a:target {
    color: black;
+ }
+
+ @media(max-width:500px){
+   .status-filters {
+    flex-direction: column;
+    align-items: center;
+   }
+
+   .btn-addTodo{
+    display:none;
+   }
+
 }
 
-.clearAllIcon:hover {
-  cursor: default;
-  opacity: 0.6;
-
-}
